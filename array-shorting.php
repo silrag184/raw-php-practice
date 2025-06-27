@@ -1,4 +1,12 @@
 <?php
+/**
+ * Copyright (c) 2024 silrag184
+ *
+ * This file is part of the PHP Practice Projects.
+ * Licensed under the MIT License.
+ * See the LICENSE file distributed with this source code for more information.
+ */
+
 // array-shorting.php
 // Sort an array without using the built-in sort() function
 

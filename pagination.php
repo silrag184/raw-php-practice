@@ -19,43 +19,51 @@
     </style>
 </head>
 <body>
-    <?php
-    // Sample data array to paginate
-    $data = range(1, 100); // Array of numbers from 1 to 100
+<?php
+/**
+ * Copyright (c) 2024 silrag184
+ *
+ * This file is part of the PHP Practice Projects.
+ * Licensed under the MIT License.
+ * See the LICENSE file distributed with this source code for more information.
+ */
 
-    // Number of items per page
-    $itemsPerPage = 10;
+// Sample data array to paginate
+$data = range(1, 100); // Array of numbers from 1 to 100
 
-    // Get the current page from query parameter, default is 1
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    if ($page < 1) {
-        $page = 1;
-    }
+// Number of items per page
+$itemsPerPage = 10;
 
-    // Calculate total pages
-    $totalItems = count($data);
-    $totalPages = ceil($totalItems / $itemsPerPage);
+// Get the current page from query parameter, default is 1
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) {
+    $page = 1;
+}
 
-    // Calculate the offset for the current page
-    $offset = ($page - 1) * $itemsPerPage;
+// Calculate total pages
+$totalItems = count($data);
+$totalPages = ceil($totalItems / $itemsPerPage);
 
-    // Slice the data array to get items for the current page
-    $currentPageData = array_slice($data, $offset, $itemsPerPage);
-    ?>
+// Calculate the offset for the current page
+$offset = ($page - 1) * $itemsPerPage;
 
-    <h1>Page <?php echo $page; ?> of <?php echo $totalPages; ?></h1>
-    <ul>
-        <?php foreach ($currentPageData as $item): ?>
-            <li><?php echo $item; ?></li>
-        <?php endforeach; ?>
-    </ul>
+// Slice the data array to get items for the current page
+$currentPageData = array_slice($data, $offset, $itemsPerPage);
+?>
 
-    <div class="pagination">
-        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-            <a href="?page=<?php echo $i; ?>" class="<?php echo ($i == $page) ? 'active' : ''; ?>">
-                <?php echo $i; ?>
-            </a>
-        <?php endfor; ?>
-    </div>
+<h1>Page <?php echo $page; ?> of <?php echo $totalPages; ?></h1>
+<ul>
+    <?php foreach ($currentPageData as $item): ?>
+        <li><?php echo $item; ?></li>
+    <?php endforeach; ?>
+</ul>
+
+<div class="pagination">
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <a href="?page=<?php echo $i; ?>" class="<?php echo ($i == $page) ? 'active' : ''; ?>">
+            <?php echo $i; ?>
+        </a>
+    <?php endfor; ?>
+</div>
 </body>
 </html>
